@@ -41,12 +41,12 @@ async def items(request, session = session):
     print("here 2x")
     return {"status_code":200, "body": "all", "type": "json"} 
 
-@app.get("/items")
+@app.get("/item")
 async def items(request, session = session):
     print("here")
     print(request)
     
-    items =  session.query(models.Items).get(id)
+    items =  session.query(models.Items).get('c81103a1-6d42-4129-a39e-006dea46b191')
     print(items)
     print("here 2x")
     return {"status_code":200, "body": "all", "type": "json"} 
