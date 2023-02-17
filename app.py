@@ -41,6 +41,16 @@ async def items(request, session = session):
     print("here 2x")
     return {"status_code":200, "body": "all", "type": "json"} 
 
+@app.get("/items")
+async def items(request, session = session):
+    print("here")
+    print(request)
+    
+    items =  session.query(models.Items).get(id)
+    print(items)
+    print("here 2x")
+    return {"status_code":200, "body": "all", "type": "json"} 
+
 @app.post("/item")
 async def new_item(request, session = session):
     body = bytearray(request['body']).decode("utf-8")
