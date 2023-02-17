@@ -32,27 +32,32 @@ async def h(request):
     return "Hello, world!"
 
 @app.get("/items")
-async def items(request, session = session):
+async def items(request, session = Session(engine)):
     print("here")
     print(request)
     
-    items =  session.query(models.Items).all()
+    query =  select(Items)
+    items =  session.execute(query).scalars().all()
     print(items)
     print("here 2x")
     return {"status_code":200, "body": "all", "type": "json"} 
+
 
 @app.get("/item")
-async def items(request, session = session):
+async def items(request, session = Session(engine)):
     print("here")
     print(request)
     
-    items =  session.query(models.Items).get('c81103a1-6d42-4129-a39e-006dea46b191')
+    query =  select(Items)
+    items = session.execute(query).filter_by(Items.name=='Apple').first()
+    
     print(items)
     print("here 2x")
     return {"status_code":200, "body": "all", "type": "json"} 
 
+
 @app.post("/item")
-async def new_item(request, session = session):
+async def new_item(request, session = Session(engine)):
     body = bytearray(request['body']).decode("utf-8")
     json_body = json.loads(body)
     name = json_body['name']
