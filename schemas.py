@@ -1,4 +1,8 @@
 from pydantic import BaseModel
 
-class Item(BaseModel):
-    name: str
+class Book(BaseModel):
+    id : int
+    title: str
+    author: str
+    page_num: int
+    review: str
