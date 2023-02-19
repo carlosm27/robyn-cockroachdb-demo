@@ -1,7 +1,7 @@
-from robyn import Robyn
+from robyn import Robyn, jsonify
 from controllers import all_books, new_book, book_by_id, delete_book, update_book
 import json
-
+from schemas import Book
 
 app = Robyn(__file__)
 
@@ -27,16 +27,18 @@ async def books():
     return books
 
 
+
 @app.get("/book/:id")
 async def get_book(request):
     id = request['params']['id']
 
     book = book_by_id(id)
+    
 
     if book == None:
         return {"status_code":404, "body": "Book not Found", "type": "text"}
     else:
-        return book   
+        return book
     
         
 @app.put("/book/:id")
