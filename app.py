@@ -28,7 +28,7 @@ async def books():
 async def get_book(request):
     id = request['params']['id']
 
-    book = book_by_id(id)
+    book = book_by_id(int(id))
 
     try:
         if book == None:
