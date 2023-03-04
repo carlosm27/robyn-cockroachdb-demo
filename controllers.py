@@ -8,7 +8,6 @@ def all_books():
     cur = conn.cursor()
     cur.execute('SELECT * FROM books;')
     books = list_dict(cur.fetchall())
-    print(books)
     cur.close()
     conn.close()
     
@@ -66,7 +65,7 @@ def update_book(title:str, author, id:int):
 def delete_book(id:int):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM books WHERE id = %s", (id))
+    cursor.execute("DELETE FROM books WHERE id = %s", (id,))
     conn.commit()
     conn.close()
 
