@@ -3,16 +3,14 @@ import psycopg2
 from dotenv import load_dotenv
 
 load_dotenv()
-USER = os.getenv('USERNAME')
-PASSWORD = os.getenv('PASSWORD')
+
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 
 
 def get_db_connection():
     conn = psycopg2.connect(
-        dbname = "robyn_db",
-        user = "postgres",
-        password = PASSWORD
+       DATABASE_URL
     )
     return conn
 
