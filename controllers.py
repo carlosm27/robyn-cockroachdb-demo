@@ -1,7 +1,6 @@
 from init_db import get_db_connection
 import json
 from helpers import to_dict, list_dict
-from models import Book
 
 
 def all_books():
